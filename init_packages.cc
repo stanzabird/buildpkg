@@ -38,10 +38,28 @@ namespace init_packages
   }
 
 
+  // http://www.xmlsoft.org/examples/tree1.c
+  void walk_tree(xmlNodePtr a_node) {
+    xmlNodePtr cur_node = nullptr;
+    
+    for (cur_node = a_node; cur_node; cur_node = cur_node->next) {
+      if (cur_node->type == XML_ELEMENT_NODE) {
+	std::cout << "[debug xml] node type: Element, name: "<<cur_node->name<<"\n";
+      }
+
+      walk_tree(cur_node->children);
+    }
+  }
+
+  
   
   int init_data_from_file(const std::string& path)
   {    
     // the actual main entry point. file existence/readability not assumed
+    if (path.empty()) {
+      std::cout << "buildpkg: error: unable to find a package file in `$HOME/.buildpkg.xml' nor is it specified in $BUILDPKG or on the commandline." << path << "\n";
+      return 1;
+    }
     if (exists_test(path) == false) {
       std::cout << "buildpkg: error: unable to open package file for reading: " << path << "\n";
       return 1;
@@ -54,6 +72,10 @@ namespace init_packages
       if (!doc) {
 	std::cout << "buildpkg: error: unable to parse xml in package file: "<<path<<"\n";
 	return 1;
+      }
+      {
+	xmlNodePtr root = xmlDocGetRootElement(doc);
+	walk_tree(root);
       }
       xmlFreeDoc(doc);
     }
