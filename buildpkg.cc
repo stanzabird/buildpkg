@@ -38,6 +38,7 @@ namespace data {
     },
 
     { "valornine","","https://github.com/opalraava/valornine/releases/download/v0.2.2/valornine-0.2.2.tar.gz",{} },
+    { "buildpkg","","https://github.com/stanzabird/buildpkg/releases/download/v0.2.6/buildpkg-0.2.6.tar.gz",{} },
 
     { "libxml2","","ftp://xmlsoft.org/libxml2/libxml2-2.9.9.tar.gz",{
 	"./configure {{option_prefix}} --without-python",

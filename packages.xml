@@ -8,6 +8,10 @@
     <archive_location>https://github.com/opalraava/valornine/releases/download/v0.2.2/valornine-0.2.2.tar.gz</archive_location>
   </package>
   <package>
+    <name>buildpkg</name>
+    <archive_location>https://github.com/stanzabird/buildpkg/releases/download/v0.2.6/buildpkg-0.2.6.tar.gz</archive_location>
+  </package>
+  <package>
     <name>libxml2</name>
     <archive_location>ftp://xmlsoft.org/libxml2/libxml2-2.9.9.tar.gz</archive_location>
     <build_commands>
