@@ -57,7 +57,8 @@ namespace init_packages
   {    
     // the actual main entry point. file existence/readability not assumed
     if (path.empty()) {
-      std::cout << "buildpkg: error: unable to find a package file in `$HOME/.buildpkg.xml' nor is it specified in $BUILDPKG or on the commandline." << path << "\n";
+      std::cout
+	<< "buildpkg: error: unable to find a package file in `$HOME/.buildpkg.xml' nor is it specified in $BUILDPKG or on the commandline.\n";
       return 1;
     }
     if (exists_test(path) == false) {
@@ -79,9 +80,9 @@ namespace init_packages
       }
       xmlFreeDoc(doc);
     }
-    return 0;
-  }
 
-  
+    std::cout << "[debug abort] We believe the rest of the program to be ok. exiting.\n";
+    return 1;
+  }
 }
 

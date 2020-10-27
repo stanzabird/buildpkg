@@ -1,12 +1,8 @@
 #ifndef INCLUDED_DIRDIFF_H
-#define INCLUDED_DIRDIFF_H 1
+#define INCLUDED_DIRDIFF_H
 
-#include <vector>
 #include <string>
-
-/*
- * This module is simple, it detects file changes in a directory.
- */
+#include <vector>
 
 namespace dirdiff
 {
