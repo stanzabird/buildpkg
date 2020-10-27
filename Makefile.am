@@ -8,4 +8,4 @@ buildpkg_SOURCES = dirdiff.h dirdiff.cc init_packages.h init_packages.cc buildpk
 buildpkg_CPPFLAGS = -I ${HOME}/usr/include/libxml2
 buildpkg_LDADD = -L ${HOME}/usr/lib -lxml2
 
-EXTRA_DIST = packages.xml
+EXTRA_DIST = packages.xml LICENSE README.md
