@@ -81,8 +81,8 @@ namespace init_packages
       xmlFreeDoc(doc);
     }
 
-    std::cout << "[debug abort] We believe the rest of the program to be ok. exiting.\n";
-    return 1;
+    std::cout << "[debug alert] We believe the rest of the program to be ok.\n";
+    return 0;
   }
 }
 

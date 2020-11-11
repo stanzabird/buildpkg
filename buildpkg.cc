@@ -47,7 +47,23 @@ namespace data {
       }
     },
     { "libxslt","","ftp://xmlsoft.org/libxml2/libxslt-1.1.34.tar.gz",{} },
-      { "sqlite3","","https://www.sqlite.org/2020/sqlite-autoconf-3330000.tar.gz",{} },
+      { "openssl","","https://www.openssl.org/source/openssl-1.1.1h.tar.gz",{"./config {{option_prefix}}","make","make install"} },
+    { "sqlite3","","https://www.sqlite.org/2020/sqlite-autoconf-3330000.tar.gz",{} },
+
+    {
+      "xen",
+	"",
+	"https://downloads.xenproject.org/release/xen/4.14.0/xen-4.14.0.tar.gz",
+	  {
+	  }
+    },
+
+    { "boost","","https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.bz2",
+	{
+	  "./bootstrap.sh",
+	  "./b2 {{option_prefix}} install"
+	}
+    },
       
     { "cmake","","https://github.com/Kitware/CMake/releases/download/v3.18.4/cmake-3.18.4.tar.gz",
 	{
