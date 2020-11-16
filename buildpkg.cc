@@ -51,10 +51,24 @@ namespace data {
     { "sqlite3","","https://www.sqlite.org/2020/sqlite-autoconf-3330000.tar.gz",{} },
 
     {
+      "dev86", "", "http://distrib-coffee.ipsl.jussieu.fr/pub/linux/momonga/1/PKGS/SOURCES/Dev86src-0.16.15.tar.gz",
+	{
+	  "make PREFIX={{value_prefix}}",
+	  "make install"
+	} 
+    },
+    {
+      "xz","","https://tukaani.org/xz/xz-5.2.5.tar.gz",{}
+    },
+    {
       "xen",
 	"",
 	"https://downloads.xenproject.org/release/xen/4.14.0/xen-4.14.0.tar.gz",
 	  {
+	    // "./configure {{option_prefix}} --disable-xen --disable-tools --disable-stubdom --disable-docs",
+	    "./configure {{option_prefix}} --disable-xen --disable-tools --disable-stubdom --disable-docs",
+	      "make",
+	      "make install"
 	  }
     },
 
@@ -304,18 +318,29 @@ void url_sort_data_structure() {
 
 static std::string expand_prefix(const std::string& s) {
   std::string match = "{{option_prefix}}";
+  std::string match2 = "{{value_prefix}}";
   std::string value;
+  std::string value2;
+  std::string retval = s;
   
-  if (!opt_prefix.empty()) 
+  if (!opt_prefix.empty()) {
     value = "--prefix=" + opt_prefix;
+    value2 = opt_prefix;
+  }
 
-  if (s.find(match) != std::string::npos) {
-      std::string result = s;
+  if (retval.find(match) != std::string::npos) {
+      std::string result = retval;
       replace(result,match,value);
-      return result;
+      retval = result;
   }
   
-  return s;
+  if (retval.find(match2) != std::string::npos) {
+      std::string result = retval;
+      replace(result,match2,value2);
+      retval = result;
+  }
+  
+  return retval;
 }
 
 
