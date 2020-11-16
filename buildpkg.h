@@ -23,7 +23,7 @@ static bool replace (std::string& str, const std::string& from, const std::strin
 
 // data structure
 namespace data {
-  struct package_t { std::string name, archive_name, archive_location; std::vector<std::string> build_commands; };
+  struct package_t { std::string name, archive_website, archive_location; std::vector<std::string> build_commands; };
   extern std::vector<package_t> packages;
 }
 

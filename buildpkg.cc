@@ -78,6 +78,20 @@ namespace data {
 	  "./b2 {{option_prefix}} install"
 	}
     },
+
+    {
+      "json-c",
+      "https://json-c.github.io/json-c/json-c-current-release/doc/html/index.html",
+      "https://github.com/json-c/json-c.git",
+	{
+	  "mkdir ../out-of-tree-build",
+	     "cd ../out-of-tree-build && cmake -DCMAKE_INSTALL_PREFIX={{value_prefix}} ../json-c",
+	     "cd ../out-of-tree-build && make",
+             "cd ../out-of-tree-build && make install",
+	 "rm -rf ../out-of-tree-build",
+	    "# see examples at : https://gist.github.com/alan-mushi/19546a0e2c6bd4e059fd"
+	}
+    },
       
     { "cmake","","https://github.com/Kitware/CMake/releases/download/v3.18.4/cmake-3.18.4.tar.gz",
 	{
@@ -351,7 +365,7 @@ int show_package(const data::package_t& package)
 {
   std::cout
     << "name: " << package.name << "\n"
-    << "archive_name: " << package.archive_name << "\n"
+    << "archive_website: " << package.archive_website << "\n"
     << "archive_location: " << package.archive_location << "\n"
     << "build_commands:\n";
       
@@ -363,7 +377,8 @@ int show_package(const data::package_t& package)
 int build_package(const data::package_t& package)
 {
   std::string detected_package_dir;
-  std::string archive_name = package.archive_name;
+  std::string archive_name;
+  std::string archive_website = package.archive_website;
   bool did_exist_before = false;
 
   // before we can fetch, we should determine the tarball filename, if not given
@@ -377,9 +392,54 @@ int build_package(const data::package_t& package)
       }
       archive_name = package.archive_location.substr(pos+1);
     }
+
+
+
+
+      //
+      // TODO: guess extraction program by extension (.zip)
+      // NOTE: our first use case turns out to be .git for git clone stuff..
+      //
+
+      // so we need to find the extension. We're on c++14 with cloud consoles so this
+      // must be done with std::string operations.. This hacky stuff works for now.
+
+      std::string extension;
+      std::string extract_command;
+      std::string extract_command_options;
+      
+      auto pos = archive_name.find(".tar.gz");
+      bool is_fetchable = true;
+      
+      if (pos != std::string::npos)
+	{
+	  // tarball
+	  std::string s = "xvf";
+	  if (opt_quiet) s = "xf";
+	  extract_command = "tar ";
+	  extract_command_options = s;
+	}
+      else {
+	pos = archive_name.find(".git");
+	if (pos != std::string::npos)
+	  {
+	    // git repo
+	    extract_command = "git clone ";
+	    extract_command_options = "";
+	    is_fetchable = false;
+	  }
+      }
+      
+
+
+
+
+
+
+
   
   // fetch tarball..
-  if (!exists_test(archive_name))
+  if (!exists_test(archive_name) && is_fetchable)
     if (system_cxx_str(opt_fetch_with + std::string(" ") + package.archive_location) != 0) {
       std::cout << "buildpkg: error: can't fetch archive `" << package.archive_location << "'\n";
       return 1;
@@ -395,11 +455,14 @@ int build_package(const data::package_t& package)
   
   if (dirdiff::first_pass(dir,files) == 0)
     {
-      // TODO: guess extraction program by extension (.zip)
-      std::string s = "xvf";
-      if (opt_quiet) s = "xf";
       
-      if (system_cxx_str(std::string("tar ") + s + " " + archive_name) != 0) {
+      
+      
+      if (system_cxx_str(
+			 extract_command
+			 + (extract_command_options.empty() ? "" : extract_command_options + " ")
+			 + (is_fetchable == false ? package.archive_location : archive_name)
+			 ) != 0) {
 	std::cout << "buildpkg: error: tar failed to extract the archive `"<<archive_name<<"'\n";
 	return 1;
       }
