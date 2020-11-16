@@ -11,6 +11,7 @@ buildpkg_SOURCES = dirdiff.h dirdiff.cc init_packages.h init_packages.cc buildpk
 #
 # PROBLEM: no pkg-config on m$ cloud shells.
 #
+# WORKAROUND: download and install libxml2 into $HOME/usr manually and use the Cloud shells config
 
 ### Cloud shells
 buildpkg_CPPFLAGS = -I ${prefix}/include/libxml2
