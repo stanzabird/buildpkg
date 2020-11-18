@@ -123,6 +123,10 @@ print_usage()
   std::cout
     << "Use: buildpkg [options] package...\n"
     << "\n"
+    << "I use this tool to install libs and tools in my $HOME/usr folder.\n"
+    << "It can get big :) My $PATH is adusted to take binaries in $HOME/usr/bin also, and\n"
+    << "there is an LD_LIBRARY_PATH variable pointing to $HOME/usr/lib.\n"
+    << "\n"
     << "Available options:\n"
     << "  -l,--list                  List all available packages and exit.\n"
     << "  -s,--show                  Print details about the packages.\n"
