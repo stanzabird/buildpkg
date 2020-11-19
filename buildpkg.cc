@@ -388,7 +388,7 @@ int show_package(const data::package_t& package)
 {
   std::cout
     << "name: " << package.name << "\n"
-    << "archive_website: " << package.archive_website << "\n"
+    << "website: " << package.archive_website << "\n"
     << "archive_location: " << package.archive_location << "\n"
     << "build_commands:\n";
       
