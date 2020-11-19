@@ -385,6 +385,8 @@ int build_package(const data::package_t& package)
   std::string archive_website = package.archive_website;
   bool did_exist_before = false;
 
+
+  
   // before we can fetch, we should determine the tarball filename, if not given
   if (archive_name.empty())
     {
@@ -399,6 +401,8 @@ int build_package(const data::package_t& package)
 
 
 
+  
+
 
       //
       // TODO: guess extraction program by extension (.zip)
@@ -408,11 +412,12 @@ int build_package(const data::package_t& package)
       // so we need to find the extension. We're on c++14 with cloud consoles so this
       // must be done with std::string operations.. This hacky stuff works for now.
 
+
       std::string extension;
       std::string extract_command;
       std::string extract_command_options;
       
-      auto pos = archive_name.find(".tar.gz");
+      auto pos = archive_name.find(".tar.");
       bool is_fetchable = true;
       
       if (pos != std::string::npos)
@@ -432,6 +437,20 @@ int build_package(const data::package_t& package)
 	    extract_command_options = "";
 	    is_fetchable = false;
 	  }
+	else {
+	  pos = archive_name.find(".zip");
+	  if (pos != std::string::npos)
+	    {
+	      // git repo
+	      extract_command = "unzip ";
+	      extract_command_options = "";
+	      is_fetchable = true;
+	    }
+	  else {
+	    std::cout << "buildpkg: internal error: package `"<<archive_name<<"': we have no idea how to extract/clone this thing.\n";
+	    return 1;
+	  }
+	}
       }
       
 
