@@ -61,6 +61,9 @@ namespace data {
       "xz","","https://tukaani.org/xz/xz-5.2.5.tar.gz",{}
     },
     {
+      "libcurl","","https://curl.se/download/curl-7.73.0.tar.bz2",{}
+    },
+    {
       "xen",
 	"",
 	"https://downloads.xenproject.org/release/xen/4.14.0/xen-4.14.0.tar.gz",

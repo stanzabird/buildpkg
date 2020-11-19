@@ -82,7 +82,7 @@ namespace init_packages
     }
 
     std::cout << "[debug alert] We believe the rest of the program to be ok.\n";
-    return 0;
+    return 1;
   }
 }
 
