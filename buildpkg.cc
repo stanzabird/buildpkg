@@ -87,12 +87,12 @@ namespace data {
       "https://json-c.github.io/json-c/json-c-current-release/doc/html/index.html",
       "https://github.com/json-c/json-c.git",
 	{
-	  "mkdir ../out-of-tree-build",
+	     "mkdir ../out-of-tree-build",
 	     "cd ../out-of-tree-build && cmake -DCMAKE_INSTALL_PREFIX={{value_prefix}} ../json-c",
 	     "cd ../out-of-tree-build && make",
              "cd ../out-of-tree-build && make install",
-	 "rm -rf ../out-of-tree-build",
-	    "# see examples at : https://gist.github.com/alan-mushi/19546a0e2c6bd4e059fd"
+	     "rm -rf ../out-of-tree-build",
+	     "# see examples at : https://gist.github.com/alan-mushi/19546a0e2c6bd4e059fd"
 	}
     },
       

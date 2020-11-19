@@ -38,4 +38,50 @@
     <name>buildpkg</name>
     <archive_location>https://github.com/stanzabird/buildpkg/releases/download/v0.2.6/buildpkg-0.2.6.tar.gz</archive_location>
   </package>
+  <package>
+    <name>openssl</name>
+    <archive_location>https://www.openssl.org/source/openssl-1.1.1h.tar.gz</archive_location>
+  </package>
+  <package>
+    <name>dev86</name>
+    <archive_location>http://distrib-coffee.ipsl.jussieu.fr/pub/linux/momonga/1/PKGS/SOURCES/Dev86src-0.16.15.tar.gz</archive_location>
+  </package>
+  <package>
+    <name>xz</name>
+    <archive_location>https://tukaani.org/xz/xz-5.2.5.tar.gz</archive_location>
+  </package>
+  <package>
+    <name>libcurl</name>
+    <archive_location>https://curl.se/download/curl-7.73.0.tar.bz2</archive_location>
+  </package>
+  <package>
+    <name>xen</name>
+    <archive_location>https://downloads.xenproject.org/release/xen/4.14.0/xen-4.14.0.tar.gz</archive_location>
+    <build_commands>
+      <cmd>./configure {{option_prefix}} --disable-xen --disable-tools --disable-stubdom --disable-docs</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+  </package>
+  <package>
+    <name>boost</name>
+    <archive_location>https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.bz2</archive_location>
+    <build_commands>
+      <cmd>./bootstrap.sh</cmd>
+      <cmd>./b2 {{option_prefix}} install</cmd>
+    </build_commands>
+  </package>
+  <package>
+    <name>json-c</name>
+    <website>https://json-c.github.io/json-c/json-c-current-release/doc/html/index.html</website>
+    <archive_location>https://github.com/json-c/json-c.git</archive_location>
+    <build_commands>
+      <cmd>mkdir ../out-of-tree-build</cmd>
+      <cmd>cd ../out-of-tree-build ; cmake -DCMAKE_INSTALL_PREFIX={{value_prefix}} ../json-c</cmd>
+      <cmd>cd ../out-of-tree-build ; make</cmd>
+      <cmd>cd ../out-of-tree-build ; make install</cmd>
+      <cmd>rm -rf ../out-of-tree-build</cmd>
+      <cmd># see examples at : https://gist.github.com/alan-mushi/19546a0e2c6bd4e059fd</cmd>
+    </build_commands>
+  </package>
 </packages>
