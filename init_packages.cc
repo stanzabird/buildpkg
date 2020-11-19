@@ -38,18 +38,78 @@ namespace init_packages
   }
 
 
-  // http://www.xmlsoft.org/examples/tree1.c
-  void walk_tree(xmlNodePtr a_node) {
-    xmlNodePtr cur_node = nullptr;
-    
-    for (cur_node = a_node; cur_node; cur_node = cur_node->next) {
-      if (cur_node->type == XML_ELEMENT_NODE) {
-	std::cout << "[debug xml] node type: Element, name: "<<cur_node->name<<"\n";
-      }
 
-      walk_tree(cur_node->children);
+  // most functions below are just used to parse the xml init file.
+
+  data::package_t current_package;
+
+
+  void add_build_commands(xmlNodePtr build_commands) {
+    for (xmlNodePtr node = build_commands; node; node = node->next) {
+      if (node->type == XML_ELEMENT_NODE) {
+	std::string node_name = reinterpret_cast<const char*>(node->name);
+	if (node_name == "cmd") {
+	  std::string node_content = reinterpret_cast<const char*>(xmlNodeGetContent(node));
+	  current_package.build_commands.push_back(node_content);
+	}
+      }
     }
   }
+
+
+  
+
+  void add_package(xmlNodePtr package_values) {
+    for (xmlNodePtr node = package_values; node; node = node->next) {
+      if (node->type == XML_ELEMENT_NODE) {
+	std::string node_name = reinterpret_cast<const char*>(node->name);
+	if (node_name == "name") {
+	  std::string node_content = reinterpret_cast<const char*>(xmlNodeGetContent(node));
+	  current_package.name = node_content;
+	}
+	else if (node_name == "archive_website") {
+	  std::string node_content = reinterpret_cast<const char*>(xmlNodeGetContent(node));
+	  current_package.archive_website = node_content;
+	}
+	else if (node_name == "archive_location") {
+	  std::string node_content = reinterpret_cast<const char*>(xmlNodeGetContent(node));
+	  current_package.archive_location = node_content;
+	}
+	else if (node_name == "build_commands") {
+	  add_build_commands(node->children);
+	}
+      }
+    }
+  }
+
+
+  
+  void add_packages(xmlNodePtr packages) {
+    for (xmlNodePtr node = packages; node; node = node->next) {
+      if (node->type == XML_ELEMENT_NODE) {
+	std::string node_name = reinterpret_cast<const char*>(node->name);
+	if (node_name == "package") {
+	  add_package(node->children);
+	  data::packages.push_back(current_package);
+	  current_package = data::package_t{};
+	}
+      }
+    }
+  }
+
+  
+  void walk_packages(xmlNodePtr doc) {
+    for (xmlNodePtr node = doc; node; node = node->next) {
+      if (node->type == XML_ELEMENT_NODE) {
+	std::string node_name = reinterpret_cast<const char*>(node->name);
+	if (node_name == "packages") {
+	  add_packages(node->children);
+	}
+      }
+    }
+  }
+
+
 
   
   
@@ -58,7 +118,9 @@ namespace init_packages
     // the actual main entry point. file existence/readability not assumed
     if (path.empty()) {
       std::cout
-	<< "buildpkg: error: unable to find a package file in `$HOME/.buildpkg.xml' nor is it specified in $BUILDPKG or on the commandline.\n";
+	<< "buildpkg: error: unable to find a package file in"
+	" `$HOME/.buildpkg.xml' nor is it specified in $BUILDPKG or on the commandline.\n"
+	;
       return 1;
     }
     if (exists_test(path) == false) {
@@ -74,15 +136,17 @@ namespace init_packages
 	std::cout << "buildpkg: error: unable to parse xml in package file: "<<path<<"\n";
 	return 1;
       }
+      
       {
 	xmlNodePtr root = xmlDocGetRootElement(doc);
-	walk_tree(root);
+	data::packages = std::vector<data::package_t>{}; // zap the internal data
+	walk_packages(root);
       }
+      
       xmlFreeDoc(doc);
     }
-
-    std::cout << "[debug alert] We believe the rest of the program to be ok.\n";
-    return 1;
+    
+    return 0;
   }
 }
 

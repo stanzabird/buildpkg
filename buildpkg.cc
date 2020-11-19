@@ -163,7 +163,7 @@ main(int argc, char* argv[])
   // we need to get the default data file as soon as possible
   xml_datafile = init_packages::find_default_datafile();
 
-  bool flag_edit = false;
+  bool flag_edit = false, flag_list = false, flag_urls = false; // options that are kind of specialized commands
 
   static struct option long_options[] =
     {
@@ -216,14 +216,11 @@ main(int argc, char* argv[])
 	  opt_show = true;
 	  break;
 	case 'l':
-	  for (auto i : data::packages)
-	    std::cout << i.name << "\n";
-	  return 0;
+	  flag_list = true;
+	  break;
 	case 'u':
-	  url_sort_data_structure();
-	  for (auto i : data::packages)
-	    std::cout << i.archive_location << "\n";
-	  return 0;
+	  flag_urls = true;
+	  break;
 	case 'k':
 	  opt_keep = true;
 	  break;
@@ -243,10 +240,7 @@ main(int argc, char* argv[])
 	}
     }
 
-  if (flag_edit)
-    return system_str(std::string{"$EDITOR "}+xml_datafile);
-
-  if (optind >= argc) {
+  if (optind >= argc && !flag_edit && !flag_list && !flag_urls) {
     print_usage();
     return 0;
   }
@@ -258,6 +252,28 @@ main(int argc, char* argv[])
 	return 1;
       }
     }
+
+
+
+  if (flag_edit)
+    return system_str(std::string{"$EDITOR "}+xml_datafile);
+
+  if (flag_list) {
+    for (auto i : data::packages)
+      std::cout << i.name << "\n";
+    return 0;
+  }
+
+  if (flag_urls) {
+    url_sort_data_structure();
+    for (auto i : data::packages)
+      std::cout << i.archive_location << "\n";
+    return 0;
+  }
+
+
+
+
   
   // blatant hack to get more quiet..
   if (opt_quiet) {

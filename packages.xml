@@ -1,6 +1,7 @@
 <packages>
   <package>
     <name>libtool</name>
+    <archive_website>https://www.gnu.org/software/libtool/</archive_website>
     <archive_location>https://ftpmirror.gnu.org/libtool/libtool-2.4.6.tar.gz</archive_location>
   </package>
   <package>
