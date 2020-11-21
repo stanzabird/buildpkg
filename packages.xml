@@ -138,5 +138,16 @@
       <cmd>rm -rf ../gcc-objdir</cmd>
     </build_commands>
   </package>
-  
+
+  <package>
+    <name>gdb</name>
+    <website>https://www.gnu.org/software/gdb/</website>
+    <archive_location>https://ftp.gnu.org/gnu/gdb/gdb-10.1.tar.xz</archive_location>
+  </package>
+
+  <package>
+    <name>texinfo</name>
+    <website>https://www.gnu.org/software/texinfo/</website>
+    <archive_location>https://ftp.gnu.org/gnu/texinfo/texinfo-6.7.tar.xz</archive_location>
+  </package>
 </packages>
