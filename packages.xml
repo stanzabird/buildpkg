@@ -41,6 +41,11 @@
   <package>
     <name>openssl</name>
     <archive_location>https://www.openssl.org/source/openssl-1.1.1h.tar.gz</archive_location>
+    <build_commands>
+      <cmd>./config {{option_prefix}}</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
   </package>
   <package>
     <name>dev86</name>
@@ -84,4 +89,45 @@
       <cmd># see examples at : https://gist.github.com/alan-mushi/19546a0e2c6bd4e059fd</cmd>
     </build_commands>
   </package>
+
+  <package>
+    <name>binutils</name><website>https://www.gnu.org/software/binutils/</website>
+    <archive_location>https://ftp.gnu.org/gnu/binutils/binutils-2.35.tar.gz</archive_location>
+  </package>
+  <package>
+    <name>lzip</name><website>http://www.nongnu.org/lzip/lzip.html</website>
+    <archive_location>http://download.savannah.gnu.org/releases/lzip/lzip-1.22-rc2.tar.gz</archive_location>
+  </package>
+  
+
+  <package>
+    <name>gmp</name><website>https://gmplib.org/</website>
+    <archive_location>https://gmplib.org/download/gmp/gmp-6.2.1.tar.lz</archive_location>
+  </package>
+  
+  <package>
+    <name>mpfr</name><website>https://www.mpfr.org/</website>
+    <archive_location>https://www.mpfr.org/mpfr-current/mpfr-4.1.0.tar.xz</archive_location>
+    <build_commands>
+      <cmd>./configure {{option_prefix}} --with-gmp={{value_prefix}}</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+  </package>
+  
+  <package>
+    <name>mpc</name><website>http://www.multiprecision.org/mpc/</website>
+    <archive_location>https://ftp.gnu.org/gnu/mpc/mpc-1.2.1.tar.gz</archive_location>
+    <build_commands>
+      <cmd>./configure {{option_prefix}} --with-gmp={{value_prefix}} --with-mpfr={{value_prefix}}</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+  </package>
+  
+  <package>
+    <name>gcc</name>
+    <website>https://gcc.gnu.org/</website>
+  </package>
+  
 </packages>

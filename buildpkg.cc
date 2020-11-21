@@ -365,13 +365,13 @@ static std::string expand_prefix(const std::string& s) {
     value2 = opt_prefix;
   }
 
-  if (retval.find(match) != std::string::npos) {
+  while (retval.find(match) != std::string::npos) {
       std::string result = retval;
       replace(result,match,value);
       retval = result;
   }
   
-  if (retval.find(match2) != std::string::npos) {
+  while (retval.find(match2) != std::string::npos) {
       std::string result = retval;
       replace(result,match2,value2);
       retval = result;

@@ -1,9 +1,9 @@
 AUTOMAKE_OPTIONS = foreign
 ACLOCAL_AMFLAGS = -I m4
 
-bin_PROGRAMS = buildpkg
+bin_PROGRAMS = bp
+bp_SOURCES = dirdiff.h dirdiff.cc init_packages.h init_packages.cc buildpkg.h buildpkg.cc
 
-buildpkg_SOURCES = dirdiff.h dirdiff.cc init_packages.h init_packages.cc buildpkg.h buildpkg.cc
 
 
 
@@ -14,8 +14,8 @@ buildpkg_SOURCES = dirdiff.h dirdiff.cc init_packages.h init_packages.cc buildpk
 # WORKAROUND: download and install libxml2 into $HOME/usr manually and use the Cloud shells config
 
 ### Cloud shells
-buildpkg_CPPFLAGS = -I ${prefix}/include/libxml2
-buildpkg_LDADD = -L ${prefix}/lib -lxml2
+bp_CPPFLAGS = -I ${prefix}/include/libxml2
+bp_LDADD = -L ${prefix}/lib -lxml2
 
 ### Nine
 #buildpkg_CPPFLAGS = -I /usr/include/libxml2
