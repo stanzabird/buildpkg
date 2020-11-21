@@ -128,6 +128,15 @@
   <package>
     <name>gcc</name>
     <website>https://gcc.gnu.org/</website>
+    <archive_location>https://bigsearcher.com/mirrors/gcc/releases/gcc-10.2.0/gcc-10.2.0.tar.xz</archive_location>
+    <build_commands>
+      <cmd>rm -rf ../gcc-objdir</cmd>
+      <cmd>mkdir ../gcc-objdir</cmd>
+      <cmd>cd ../gcc-objdir ; ../gcc-10.2.0/configure {{option_prefix}} --with-gmp={{value_prefix}} --with-mpfr={{value_prefix}} --with-mpc={{value_prefix}} --disable-bootstrap --enable-languages=c,c++ --disable-multilib</cmd>
+      <cmd>cd ../gcc-objdir ; make</cmd>
+      <cmd>cd ../gcc-objdir ; make install</cmd>
+      <cmd>rm -rf ../gcc-objdir</cmd>
+    </build_commands>
   </package>
   
 </packages>
