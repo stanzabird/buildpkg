@@ -108,7 +108,7 @@ namespace data {
 
 static int show_package(const data::package_t& package);
 static int build_package(const data::package_t& package);
-static void sort_data_structrure();
+static void sort_data_structure();
 static void url_sort_data_structure();
 
 
@@ -157,7 +157,7 @@ print_usage()
 int
 main(int argc, char* argv[])
 {
-  sort_data_structrure(); // NOTE: only do this BECAUSE the data structure is c++ initialized.
+  sort_data_structure(); // NOTE: only do this BECAUSE the data structure is c++ initialized.
   LIBXML_TEST_VERSION;
   
   // we need to get the default data file as soon as possible
@@ -251,6 +251,7 @@ main(int argc, char* argv[])
       if (init_packages::init_data_from_file(xml_datafile) != 0) {
 	return 1;
       }
+      sort_data_structure();
     }
 
 
@@ -333,7 +334,7 @@ struct packages_compare_t {
   }
 } packages_comparer;
 
-void sort_data_structrure() {
+void sort_data_structure() {
   std::sort(begin(data::packages), end(data::packages), packages_comparer);
 }
 // sort by URL for -u option.
