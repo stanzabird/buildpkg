@@ -235,4 +235,35 @@
     <website>https://nasm.us/</website>
     <archive_location>https://www.nasm.us/pub/nasm/releasebuilds/2.15.05/nasm-2.15.05.tar.xz</archive_location>
   </package>
+
+
+  <package>
+    <name>wget</name>
+    <website>https://www.gnu.org/software/wget/</website>
+    <archive_location>https://ftp.gnu.org/gnu/wget/wget-1.20.3.tar.lz</archive_location>
+  </package>
+
+  <package>
+    <name>gettext</name>
+    <website>http://www.gnu.org/software/gettext/</website>
+    <archive_location>http://ftp.gnu.org/gnu/gettext/gettext-0.21.tar.xz</archive_location>
+    <build_commands>
+      <cmd>./configure {{option_prefix}} --disable-shared --disable-java</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+  </package>
+
+
+  <package>
+    <name>linux</name>
+    <website>https://www.kernel.org/</website>
+    <archive_location>https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.8.3.tar.xz</archive_location>
+    <build_commands>
+      <cmd>make mrproper</cmd>
+      <cmd>make menuconfig</cmd>
+      <cmd>make</cmd>
+    </build_commands>
+  </package>
+  
 </packages>
