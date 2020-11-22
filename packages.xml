@@ -263,6 +263,7 @@
       <cmd>make mrproper</cmd>
       <cmd>make menuconfig</cmd>
       <cmd>make</cmd>
+      <cmd># make modules_install</cmd>
     </build_commands>
   </package>
   
