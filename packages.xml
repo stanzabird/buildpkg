@@ -36,6 +36,7 @@
   </package>
   <package>
     <name>buildpkg</name>
+    <website>https://github.com/stanzabird/buildpkg</website>
     <archive_location>https://github.com/stanzabird/buildpkg/releases/download/v0.2.6/buildpkg-0.2.6.tar.gz</archive_location>
   </package>
   <package>
@@ -164,20 +165,69 @@
   </package>
 
   <package>
-    <name>libtool</name>
-    <website>https://www.gnu.org/software/libtool/</website>
-    <archive_location>https://ftpmirror.gnu.org/libtool/libtool-2.4.6.tar.gz</archive_location>
-  </package>
-
-  <package>
     <name>pkg-config</name>
     <website>https://www.freedesktop.org/wiki/Software/pkg-config/</website>
     <archive_location>https://pkg-config.freedesktop.org/releases/pkg-config-0.29.2.tar.gz</archive_location>
     <build_commands>
-      <cmd>./configur {{option_prefix}}</cmd>
+      <cmd>./configure {{option_prefix}} --with-internal-glib</cmd>
       <cmd>make</cmd>
       <cmd>make install</cmd>
     </build_commands>
   </package>
+
+  <package>
+    <name>emacs</name>
+    <website>https://www.gnu.org/software/emacs/</website>
+    <archive_location>https://ftp.gnu.org/gnu/emacs/emacs-27.1.tar.xz</archive_location>
+    <patches>
+      <patch>28c28
+&lt; char *UP, *BC, PC;
+---
+&gt; extern char *UP, *BC, PC;
+</patch>
+    </patches>
+  </package>
+
+  <package>
+    <name>gnutls</name>
+    <website>https://gnutls.org/</website>
+    <archive_location>https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.9.tar.xz</archive_location>
+    <build_commands>
+      <cmd>./configure {{option_prefix}} --with-included-unistring</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+  </package>
+
+  <package>
+    <name>libnettle</name>
+    <website>https://www.lysator.liu.se/~nisse/nettle/</website>
+    <archive_location>https://ftp.gnu.org/gnu/nettle/nettle-3.6.tar.gz</archive_location>
+  </package>
   
+  <package>
+    <name>p11-kit</name>
+    <website>https://p11-glue.github.io/p11-glue/p11-kit.html</website>
+    <archive_location>https://github.com/p11-glue/p11-kit/releases/download/0.23.21/p11-kit-0.23.21.tar.xz</archive_location>
+  </package>
+
+  <package>
+    <name>libtasn1</name>
+    <website>https://www.gnu.org/software/libtasn1/</website>
+    <archive_location>https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.16.0.tar.gz</archive_location>
+  </package>
+
+  <package>
+    <name>libffi</name>
+    <website>https://sourceware.org/libffi/</website>
+    <archive_location>https://github.com/libffi/libffi/releases/download/v3.3/libffi-3.3.tar.gz</archive_location>
+  </package>
+
+
+  <package>
+    <name>ncurses</name>
+    <website>https://invisible-island.net/ncurses/ncurses.html</website>
+    <archive_location>ftp://ftp.invisible-island.net/ncurses/ncurses.tar.gz</archive_location>
+  </package>
+
 </packages>
