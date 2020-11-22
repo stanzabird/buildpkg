@@ -230,4 +230,9 @@
     <archive_location>ftp://ftp.invisible-island.net/ncurses/ncurses.tar.gz</archive_location>
   </package>
 
+  <package>
+    <name>nasm</name>
+    <website>https://nasm.us/</website>
+    <archive_location>https://www.nasm.us/pub/nasm/releasebuilds/2.15.05/nasm-2.15.05.tar.xz</archive_location>
+  </package>
 </packages>
