@@ -150,4 +150,34 @@
     <website>https://www.gnu.org/software/texinfo/</website>
     <archive_location>https://ftp.gnu.org/gnu/texinfo/texinfo-6.7.tar.xz</archive_location>
   </package>
+
+  <package>
+    <name>autoconf</name>
+    <website>https://www.gnu.org/software/autoconf/</website>
+    <archive_location>https://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.xz</archive_location>
+  </package>
+  
+  <package>
+    <name>automake</name>
+    <website>https://www.gnu.org/software/automake/</website>
+    <archive_location>https://ftp.gnu.org/gnu/automake/automake-1.16.tar.xz</archive_location>
+  </package>
+
+  <package>
+    <name>libtool</name>
+    <website>https://www.gnu.org/software/libtool/</website>
+    <archive_location>https://ftpmirror.gnu.org/libtool/libtool-2.4.6.tar.gz</archive_location>
+  </package>
+
+  <package>
+    <name>pkg-config</name>
+    <website>https://www.freedesktop.org/wiki/Software/pkg-config/</website>
+    <archive_location>https://pkg-config.freedesktop.org/releases/pkg-config-0.29.2.tar.gz</archive_location>
+    <build_commands>
+      <cmd>./configur {{option_prefix}}</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+  </package>
+  
 </packages>
