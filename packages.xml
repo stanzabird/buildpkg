@@ -1,13 +1,16 @@
-<packages>
+<packages update_url="https://raw.githubusercontent.com/stanzabird/buildpkg/main/packages.xml">
+  
   <package>
     <name>libtool</name>
     <archive_website>https://www.gnu.org/software/libtool/</archive_website>
     <archive_location>https://ftpmirror.gnu.org/libtool/libtool-2.4.6.tar.gz</archive_location>
   </package>
+  
   <package>
     <name>valornine</name>
     <archive_location>https://github.com/opalraava/valornine/releases/download/v0.2.2/valornine-0.2.2.tar.gz</archive_location>
   </package>
+  
   <package>
     <name>libxml2</name>
     <archive_location>ftp://xmlsoft.org/libxml2/libxml2-2.9.9.tar.gz</archive_location>
@@ -17,14 +20,17 @@
       <cmd>make install</cmd>
     </build_commands>
   </package>
+  
   <package>
     <name>libxslt</name>
     <archive_location>ftp://xmlsoft.org/libxml2/libxslt-1.1.34.tar.gz</archive_location>
   </package>
+  
   <package>
     <name>sqlite3</name>
     <archive_location>https://www.sqlite.org/2020/sqlite-autoconf-3330000.tar.gz</archive_location>
   </package>
+  
   <package>
     <name>cmake</name>
     <archive_location>https://github.com/Kitware/CMake/releases/download/v3.18.4/cmake-3.18.4.tar.gz</archive_location>
@@ -34,11 +40,13 @@
       <cmd>make install</cmd>
     </build_commands>
   </package>
+  
   <package>
     <name>buildpkg</name>
     <website>https://github.com/stanzabird/buildpkg</website>
     <archive_location>https://github.com/stanzabird/buildpkg/releases/download/v0.2.6/buildpkg-0.2.6.tar.gz</archive_location>
   </package>
+  
   <package>
     <name>openssl</name>
     <archive_location>https://www.openssl.org/source/openssl-1.1.1h.tar.gz</archive_location>
@@ -48,18 +56,22 @@
       <cmd>make install</cmd>
     </build_commands>
   </package>
+  
   <package>
     <name>dev86</name>
     <archive_location>http://distrib-coffee.ipsl.jussieu.fr/pub/linux/momonga/1/PKGS/SOURCES/Dev86src-0.16.15.tar.gz</archive_location>
   </package>
+  
   <package>
     <name>xz</name>
     <archive_location>https://tukaani.org/xz/xz-5.2.5.tar.gz</archive_location>
   </package>
+  
   <package>
     <name>libcurl</name>
     <archive_location>https://curl.se/download/curl-7.73.0.tar.bz2</archive_location>
   </package>
+  
   <package>
     <name>xen</name>
     <archive_location>https://downloads.xenproject.org/release/xen/4.14.0/xen-4.14.0.tar.gz</archive_location>
@@ -69,6 +81,7 @@
       <cmd>make install</cmd>
     </build_commands>
   </package>
+  
   <package>
     <name>boost</name>
     <archive_location>https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.bz2</archive_location>
@@ -77,6 +90,7 @@
       <cmd>./b2 {{option_prefix}} install</cmd>
     </build_commands>
   </package>
+  
   <package>
     <name>json-c</name>
     <website>https://json-c.github.io/json-c/json-c-current-release/doc/html/index.html</website>
@@ -91,10 +105,18 @@
     </build_commands>
   </package>
 
+
+
+
+
+
+
+  
   <package>
     <name>binutils</name><website>https://www.gnu.org/software/binutils/</website>
     <archive_location>https://ftp.gnu.org/gnu/binutils/binutils-2.35.tar.gz</archive_location>
   </package>
+  
   <package>
     <name>lzip</name><website>http://www.nongnu.org/lzip/lzip.html</website>
     <archive_location>http://download.savannah.gnu.org/releases/lzip/lzip-1.22-rc2.tar.gz</archive_location>
@@ -140,18 +162,26 @@
     </build_commands>
   </package>
 
+  
   <package>
     <name>gdb</name>
     <website>https://www.gnu.org/software/gdb/</website>
     <archive_location>https://ftp.gnu.org/gnu/gdb/gdb-10.1.tar.xz</archive_location>
   </package>
 
+
+
+  
   <package>
     <name>texinfo</name>
     <website>https://www.gnu.org/software/texinfo/</website>
     <archive_location>https://ftp.gnu.org/gnu/texinfo/texinfo-6.7.tar.xz</archive_location>
   </package>
 
+
+
+
+  
   <package>
     <name>autoconf</name>
     <website>https://www.gnu.org/software/autoconf/</website>
@@ -175,6 +205,14 @@
     </build_commands>
   </package>
 
+
+
+
+
+
+
+
+  
   <package>
     <name>emacs</name>
     <website>https://www.gnu.org/software/emacs/</website>
@@ -188,6 +226,11 @@
     </patches>
   </package>
 
+
+
+
+
+  
   <package>
     <name>gnutls</name>
     <website>https://gnutls.org/</website>
@@ -302,10 +345,24 @@
   </package>
   
 
+  <!-- full prototype of possible data: empty <name> -->
+  
   <package>
     <name></name>
     <website></website>
     <archive_location></archive_location>
+    <build_commands><cmd>./configure {{option_prefix}}</cmd><cmd>make</cmd><cmd>make install</cmd></build_commands>
+    <patches><patch></patch></patches>
+    <deps><dep></dep></deps>
+  </package>
+
+  <package meta="true"><name></name><deps><dep></dep></deps></package>
+  
+  <package meta="true">
+    <name>autotools</name>
+    <deps>
+      <dep>autoconf</dep><dep>automake</dep><dep>libtool</dep><dep>pkg-config</dep>
+    </deps>
   </package>
   
 </packages>
