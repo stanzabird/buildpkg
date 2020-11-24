@@ -345,7 +345,7 @@
     <website>https://git.gnupg.org/</website>
     <archive_location>git://git.gnupg.org/gnupg.git</archive_location>
     <build_commands>
-      <cmd>git checkout gnupg-2.2.20</cmd>
+      <!--cmd>git checkout gnupg-2.2.20</cmd-->
       <cmd>./autogen.sh</cmd>
       <cmd>./configure {{option_prefix}} --disable-doc --enable-maintainer-mode</cmd>
       <cmd>make</cmd>
