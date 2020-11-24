@@ -256,8 +256,10 @@ main(int argc, char* argv[])
 
 
 
-  if (flag_edit)
-    return system_str(std::string{"$EDITOR "}+xml_datafile);
+  if (flag_edit) {
+    std::string editor = getenv("EDITOR") ? getenv("EDITOR") : "vi";
+    return system_str(editor + " " + xml_datafile);
+  }
 
   if (flag_list) {
     for (auto i : data::packages)

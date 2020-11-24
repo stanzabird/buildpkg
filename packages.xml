@@ -266,5 +266,40 @@
       <cmd># make modules_install</cmd>
     </build_commands>
   </package>
+
+
+  <package>
+    <name>libgcrypt</name>
+    <website>https://www.gnupg.org/related_software/libgcrypt/</website>
+    <archive_location>git://git.gnupg.org/gnupg.git</archive_location>
+  </package>
+  
+
+  <package>
+    <name></name>
+    <website></website>
+    <archive_location></archive_location>
+  </package>
+  
+
+  <package>
+    <name></name>
+    <website></website>
+    <archive_location></archive_location>
+  </package>
+  
+
+  <package>
+    <name></name>
+    <website></website>
+    <archive_location></archive_location>
+  </package>
+  
+
+  <package>
+    <name></name>
+    <website></website>
+    <archive_location></archive_location>
+  </package>
   
 </packages>
