@@ -90,7 +90,8 @@ namespace init_packages
 	std::string node_name = reinterpret_cast<const char*>(node->name);
 	if (node_name == "package") {
 	  add_package(node->children);
-	  data::packages.push_back(current_package);
+	  if (current_package.name != "")
+	    data::packages.push_back(current_package);
 	  current_package = data::package_t{};
 	}
       }

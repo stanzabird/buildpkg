@@ -269,15 +269,21 @@
 
 
   <package>
-    <name>libgcrypt</name>
-    <website>https://www.gnupg.org/related_software/libgcrypt/</website>
+    <name>gnupg</name>
+    <website>https://git.gnupg.org/</website>
     <archive_location>git://git.gnupg.org/gnupg.git</archive_location>
+    <build_commands>
+      <cmd>./autogen.sh</cmd>
+      <cmd>./configure {{option_prefix}}</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
   </package>
   
 
   <package>
-    <name></name>
-    <website></website>
+    <name>libgcrypt</name>
+    <website>https://www.gnupg.org/related_software/libgcrypt/</website>
     <archive_location></archive_location>
   </package>
   
