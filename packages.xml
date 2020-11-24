@@ -93,6 +93,7 @@
   
   <package>
     <name>json-c</name>
+    <deps><dep>cmake</dep></deps>
     <website>https://json-c.github.io/json-c/json-c-current-release/doc/html/index.html</website>
     <archive_location>https://github.com/json-c/json-c.git</archive_location>
     <build_commands>
@@ -150,6 +151,7 @@
   
   <package>
     <name>gcc</name>
+    <deps><dep>binutils</dep><dep>lzip</dep><dep>gmp</dep><dep>mpfr</dep><dep>mpc</dep></deps>
     <website>https://gcc.gnu.org/</website>
     <archive_location>https://bigsearcher.com/mirrors/gcc/releases/gcc-10.2.0/gcc-10.2.0.tar.xz</archive_location>
     <build_commands>
@@ -233,13 +235,21 @@
   
   <package>
     <name>gnutls</name>
+    <deps><dep>libnettle</dep></deps>
     <website>https://gnutls.org/</website>
-    <archive_location>https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.9.tar.xz</archive_location>
+    <archive_location_original>https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.9.tar.xz</archive_location_original>
+    <archive_location>git://git.gnupg.org/npth.git</archive_location>
     <build_commands>
-      <cmd>./configure {{option_prefix}} --with-included-unistring</cmd>
+      <cmd>./autogen.sh</cmd>
+      <cmd>./configure {{option_prefix}} --disable-doc --disable-tests</cmd>
       <cmd>make</cmd>
       <cmd>make install</cmd>
     </build_commands>
+    <build_commands_original>
+      <cmd>./configure {{option_prefix}} --with-included-unistring</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands_original>
   </package>
 
   <package>
@@ -311,13 +321,48 @@
   </package>
 
 
+
+
+
+
+
+  
+
+
+  
   <package>
     <name>gnupg</name>
+    <deps>
+      <dep>libgpg-error</dep>
+      <dep>libgcrypt</dep>
+      <dep>libassuan</dep>
+      <dep>libksba</dep>
+      <dep>npth</dep>
+      
+      <!-- these are for extra functions in gnupg -->
+      <dep>sqlite3</dep><dep>libnettle</dep><dep>gnutls</dep>
+    </deps>
     <website>https://git.gnupg.org/</website>
     <archive_location>git://git.gnupg.org/gnupg.git</archive_location>
     <build_commands>
+      <cmd>git checkout gnupg-2.2.20</cmd>
       <cmd>./autogen.sh</cmd>
-      <cmd>./configure {{option_prefix}}</cmd>
+      <cmd>./configure {{option_prefix}} --disable-doc --enable-maintainer-mode</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+      <cmd>#bp -s libnettle gnutls sqlite3 libgpg-error libgcrypt libassuan libksba npth gnupg</cmd>
+    </build_commands>
+  </package>
+  
+
+  <package>
+    <name>libgcrypt</name>
+    <deps><dep>libgpg-error</dep></deps>
+    <website>https://www.gnupg.org/related_software/libgcrypt/</website>
+    <archive_location>git://git.gnupg.org/libgcrypt.git</archive_location>
+    <build_commands>
+      <cmd>./autogen.sh</cmd>
+      <cmd>./configure {{option_prefix}} --disable-doc --disable-tests</cmd>
       <cmd>make</cmd>
       <cmd>make install</cmd>
     </build_commands>
@@ -325,24 +370,53 @@
   
 
   <package>
-    <name>libgcrypt</name>
-    <website>https://www.gnupg.org/related_software/libgcrypt/</website>
-    <archive_location></archive_location>
+    <name>libgpg-error</name>
+    <website>https://gnupg.org/ftp/gcrypt/libgpg-error/</website>
+    <archive_location>git://git.gnupg.org/libgpg-error.git</archive_location>
+    <build_commands>
+      <cmd>./autogen.sh</cmd>
+      <cmd>./configure {{option_prefix}} --disable-doc --disable-tests</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
   </package>
   
-
   <package>
-    <name></name>
-    <website></website>
-    <archive_location></archive_location>
+    <name>libassuan</name>
+    <website>https://gnupg.org/ftp/gcrypt/libassuan/</website>
+    <archive_location>git://git.gnupg.org/libassuan.git</archive_location>
+    <build_commands>
+      <cmd>./autogen.sh</cmd>
+      <cmd>./configure {{option_prefix}} --disable-doc --disable-tests</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+  </package>
+  <package>
+    <name>libksba</name>
+    <website>https://gnupg.org/ftp/gcrypt/libksba/</website>
+    <archive_location>git://git.gnupg.org/libksba.git</archive_location>
+    <build_commands>
+      <cmd>./autogen.sh</cmd>
+      <cmd>./configure {{option_prefix}} --disable-doc --disable-tests</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+  </package>
+  <package>
+    <name>npth</name>
+    <website>https://gnupg.org/ftp/gcrypt/npth/</website>
+    <archive_location>git://git.gnupg.org/npth.git</archive_location>
+    <build_commands>
+      <cmd>./autogen.sh</cmd>
+      <cmd>./configure {{option_prefix}} --disable-doc --disable-tests</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
   </package>
   
-
-  <package>
-    <name></name>
-    <website></website>
-    <archive_location></archive_location>
-  </package>
+  
+  
   
 
   <!-- full prototype of possible data: empty <name> -->
@@ -354,6 +428,7 @@
     <build_commands><cmd>./configure {{option_prefix}}</cmd><cmd>make</cmd><cmd>make install</cmd></build_commands>
     <patches><patch></patch></patches>
     <deps><dep></dep></deps>
+    <remarks></remarks>
   </package>
 
   <package meta="true"><name></name><deps><dep></dep></deps></package>
@@ -364,5 +439,7 @@
       <dep>autoconf</dep><dep>automake</dep><dep>libtool</dep><dep>pkg-config</dep>
     </deps>
   </package>
+
+  <package meta="true"><name>c++toolchain</name><deps><dep>gcc</dep><dep>gdb</dep><dep>autotools</dep><dep>boost</dep></deps></package>
   
 </packages>
