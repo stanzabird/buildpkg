@@ -416,6 +416,20 @@
   </package>
   
   
+
+
+  
+  <package>
+    <name>epub2pdf</name>
+    <website>http://www.epub2pdf.com/</website>
+    <archive_location>http://www.epub2pdf.com/files/epub2pdf-0.5-src-all.zip</archive_location>
+    <build_commands>
+      <cmd>./configure {{option_prefix}}</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+  </package>
+
   
   
 
