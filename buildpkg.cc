@@ -23,7 +23,7 @@ std::string xml_datafile; // this stores the filename of the xml datafile to rea
 
 // data structure
 namespace data {
-  std::vector<std::string> default_build_commands{ "./configure {{option_prefix}}", "make all", "make install" };
+  std::vector<std::string> default_build_commands{ "./configure {{option_prefix}}", "make -j4 all", "make install" };
   std::vector<package_t> packages {
     {
       "libtool",

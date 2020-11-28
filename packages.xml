@@ -486,6 +486,31 @@
 
 
 
+  <package>
+    <name>mc</name>
+    <website>http://www.linuxfromscratch.org/blfs/view/svn/general/mc.html</website>
+    <archive_location>http://ftp.midnight-commander.org/mc-4.8.25.tar.xz</archive_location>
+    <!--build_commands><cmd>./configure {{option_prefix}}</cmd><cmd>make</cmd><cmd>make install</cmd></build_commands-->
+    <patches><patch></patch></patches>
+    <deps><dep></dep></deps>
+    <remarks></remarks>
+  </package>
+
+
+  <package>
+    <name>glib</name>
+    <archive_location>https://download.gnome.org/sources/glib/2.64/glib-2.64.6.tar.xz</archive_location>
+  </package>
+
+  <package>
+    <name>liboauth</name>
+    <website></website>
+    <archive_location>https://downloads.sourceforge.net/liboauth/liboauth-1.0.3.tar.gz</archive_location>
+    <!--build_commands><cmd>./configure {{option_prefix}}</cmd><cmd>make</cmd><cmd>make install</cmd></build_commands-->
+    <patches><patch></patch></patches>
+    <deps><dep></dep></deps>
+    <remarks></remarks>
+  </package>
 
 
   
