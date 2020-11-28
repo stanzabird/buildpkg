@@ -135,7 +135,7 @@ print_usage()
     << "  -s,--show                  Print details about the packages.\n"
     << "  -p PREFIX,--prefix=PREFIX  Set installation prefix to PREFIX (default: `"<<opt_prefix<<"').\n"
     << "\n"
-    << "  -b,--no-build              Fetch, extract. Don't build.\n"
+    << "  -x,--no-build              Fetch, extract. Don't build.\n"
     << "  -e,--no-extract            Fetch tarball. Don't extract or build. Implies --keep.\n"
     << "  -f,--fetch-with=PROGRAM    Select which progam to use to fetch the tarball (default: `"<<opt_fetch_with<<"').\n"
     << "  -h,--help                  Show this help and exit.\n"
@@ -175,7 +175,7 @@ main(int argc, char* argv[])
       {"help",            no_argument,       0, 'h'},
       {"keep",            no_argument,       0, 'k'},
       {"list",            no_argument,       0, 'l'},
-      {"no-build",        no_argument,       0, 'b'},
+      {"no-build",        no_argument,       0, 'x'},
       {"no-extract",      no_argument,       0, 'E'},
       {"fetch-with",      required_argument, 0, 'f'},
       {"prefix",          required_argument, 0, 'p'},
@@ -187,7 +187,7 @@ main(int argc, char* argv[])
     {
       int option_index = 0, c;
       
-      c = getopt_long (argc, argv, "ETt:uqhklbep:sf:", long_options, &option_index);
+      c = getopt_long (argc, argv, "ETt:uqhklxep:sf:", long_options, &option_index);
       
       if (c == -1) break; // end of options
 
@@ -199,7 +199,7 @@ main(int argc, char* argv[])
 	case 'h': // --help
 	  print_usage();
 	  return 1;
-	case 'b': // --no-build
+	case 'x': // --no-build
 	  opt_no_build = true;
 	  break;
 	case 'T': // --no-package-file
@@ -390,13 +390,20 @@ static std::string expand_prefix(const std::string& s) {
 int show_package(const data::package_t& package)
 {
   std::cout
-    << "name: " << package.name << "\n"
-    << "website: " << package.archive_website << "\n"
-    << "archive_location: " << package.archive_location << "\n"
-    << "build_commands:\n";
+    << "name: " << package.name << "\n";
+  if (package.archive_website != "") std::cout
+    << "website: " << package.archive_website << "\n";
+  std::cout
+    << "archive_location: " << package.archive_location << "\n";
+
+  if (package.build_commands.size() != 0) {
+    std::cout  
+      << "build_commands:\n";
       
-  for (auto i : package.build_commands)
-    std::cout << "  " << expand_prefix(i) << "\n";
+    for (auto i : package.build_commands)
+      std::cout << "  " << expand_prefix(i) << "\n";
+  }
+  
   return 0;
 }
 

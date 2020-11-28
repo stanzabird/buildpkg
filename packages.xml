@@ -417,6 +417,18 @@
   
   
   
+  <package>
+    <name>libiconv</name>
+    <website>https://www.gnu.org/software/libiconv/</website>
+    <archive_location>https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.16.tar.gz</archive_location>
+  </package>
+
+  <package>
+    <name>gettext</name>
+    <website>https://www.gnu.org/software/gettext/</website>
+    <archive_location>https://ftp.gnu.org/pub/gnu/gettext/gettext-0.21.tar.gz</archive_location>
+  </package>
+
   
 
   <!-- full prototype of possible data: empty <name> -->
