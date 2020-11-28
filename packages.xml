@@ -512,6 +512,16 @@
     <remarks></remarks>
   </package>
 
+  
+  <package>
+    <name>git</name>
+    <website>https://git-scm.com/</website>
+    <archive_location>https://www.kernel.org/pub/software/scm/git/git-2.29.2.tar.xz</archive_location>
+    <!--build_commands><cmd>./configure {{option_prefix}}</cmd><cmd>make</cmd><cmd>make install</cmd></build_commands-->
+    <patches><patch></patch></patches>
+    <deps><dep>libcurl</dep></deps>
+    <remarks></remarks>
+  </package>
 
   
   <!-- full prototype of possible data: empty <name> -->
