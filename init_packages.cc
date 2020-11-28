@@ -67,7 +67,7 @@ namespace init_packages
 	  std::string node_content = reinterpret_cast<const char*>(xmlNodeGetContent(node));
 	  current_package.name = node_content;
 	}
-	else if (node_name == "archive_website") {
+	else if (node_name == "website") {
 	  std::string node_content = reinterpret_cast<const char*>(xmlNodeGetContent(node));
 	  current_package.archive_website = node_content;
 	}
