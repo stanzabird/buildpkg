@@ -136,7 +136,7 @@ print_usage()
     << "  -p PREFIX,--prefix=PREFIX  Set installation prefix to PREFIX (default: `"<<opt_prefix<<"').\n"
     << "\n"
     << "  -x,--no-build              Fetch, extract. Don't build.\n"
-    << "  -e,--no-extract            Fetch tarball. Don't extract or build. Implies --keep.\n"
+    << "  -d,--no-extract            Fetch tarball. Don't extract or build. Implies --keep.\n"
     << "  -f,--fetch-with=PROGRAM    Select which progam to use to fetch the tarball (default: `"<<opt_fetch_with<<"').\n"
     << "  -h,--help                  Show this help and exit.\n"
     << "  -k,--keep                  Keep downloaded archive file(s).\n"
@@ -144,6 +144,7 @@ print_usage()
     << "  -t,--package-file=XMLFILE  Use specifeid package file (default: `"<<xml_datafile<<"').\n"
     << "  -T,--no-package-file       Do NOT use any package file, but internal data instead.\n"
     << "  -u,--list-urls             List the download urls of all packages and exit.\n"
+    << "  -e,--edut                  Edit packages file with $EDITOR.\n"
     << "\n"
     << "Compilation date (built-in data freshness): " __DATE__ ".\n"
     << "Package url: " PACKAGE_URL "\n"
@@ -176,7 +177,7 @@ main(int argc, char* argv[])
       {"keep",            no_argument,       0, 'k'},
       {"list",            no_argument,       0, 'l'},
       {"no-build",        no_argument,       0, 'x'},
-      {"no-extract",      no_argument,       0, 'E'},
+      {"no-extract",      no_argument,       0, 'd'},
       {"fetch-with",      required_argument, 0, 'f'},
       {"prefix",          required_argument, 0, 'p'},
       {"show",            no_argument,       0, 's'},
@@ -187,7 +188,7 @@ main(int argc, char* argv[])
     {
       int option_index = 0, c;
       
-      c = getopt_long (argc, argv, "ETt:uqhklxep:sf:", long_options, &option_index);
+      c = getopt_long (argc, argv, "dTt:uqhklxep:sf:", long_options, &option_index);
       
       if (c == -1) break; // end of options
 
@@ -205,7 +206,7 @@ main(int argc, char* argv[])
 	case 'T': // --no-package-file
 	  opt_no_package_file = true;;
 	  break;
-	case 'E': // --no-extract
+	case 'd': // --no-extract
 	  opt_no_extract = true;
 	  opt_keep = true;
 	  break;

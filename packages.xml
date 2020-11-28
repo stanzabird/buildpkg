@@ -2,7 +2,7 @@
   
   <package>
     <name>libtool</name>
-    <archive_website>https://www.gnu.org/software/libtool/</archive_website>
+    <website>https://www.gnu.org/software/libtool/</website>
     <archive_location>https://ftpmirror.gnu.org/libtool/libtool-2.4.6.tar.gz</archive_location>
   </package>
   
@@ -49,9 +49,10 @@
   
   <package>
     <name>openssl</name>
-    <archive_location>https://www.openssl.org/source/openssl-1.1.1h.tar.gz</archive_location>
+    <website>https://www.openssl.org/</website>
+    <archive_location>https://github.com/openssl/openssl.git</archive_location>
     <build_commands>
-      <cmd>./config {{option_prefix}}</cmd>
+      <cmd>./config {{option_prefix}} --openssldir={{value_prefix}}/ssl</cmd>
       <cmd>make</cmd>
       <cmd>make install</cmd>
     </build_commands>
@@ -445,6 +446,39 @@
 
   
 
+
+
+
+
+  <!-- lynx + deps -->
+
+
+
+  
+
+  <package>
+    <name>lynx</name>
+    <website>https://lynx.browser.org/</website>
+    <!--archive_location>https://invisible-mirror.net/archives/lynx/tarballs/lynx2.9.0dev.6.tar.gz</archive_location-->
+    <archive_location>http://invisible-island.net/datafiles/release/lynx-cur.tar.gz</archive_location>
+    <build_commands>
+      <cmd>./configure {{option_prefix}} --with-ssl={{value_prefix}}</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+    <patches><patch></patch></patches>
+    <deps><dep></dep></deps>
+    <remarks></remarks>
+  </package>
+
+
+  
+
+
+
+
+
+  
   <!-- full prototype of possible data: empty <name> -->
   
   <package>
