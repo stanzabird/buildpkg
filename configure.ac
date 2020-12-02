@@ -1,4 +1,4 @@
-AC_INIT([buildpkg], [0.5.1], [bert@stanzabird.nl], [], [https://github.com/stanzabird/buildpkg/])
+AC_INIT([buildpkg], [0.5.4], [bert@stanzabird.nl], [], [https://github.com/stanzabird/buildpkg/])
 AC_CONFIG_SRCDIR(buildpkg.cc)
 AC_PREREQ(2.59)
 AM_INIT_AUTOMAKE

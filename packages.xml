@@ -74,16 +74,6 @@
   </package>
   
   <package>
-    <name>xen</name>
-    <archive_location>https://downloads.xenproject.org/release/xen/4.14.0/xen-4.14.0.tar.gz</archive_location>
-    <build_commands>
-      <cmd>./configure {{option_prefix}} --disable-xen --disable-tools --disable-stubdom --disable-docs</cmd>
-      <cmd>make</cmd>
-      <cmd>make install</cmd>
-    </build_commands>
-  </package>
-  
-  <package>
     <name>boost</name>
     <archive_location>https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.bz2</archive_location>
     <build_commands>
@@ -309,6 +299,11 @@
   </package>
 
 
+
+
+<!-- linux, xen, qemu -->
+  
+
   <package>
     <name>linux</name>
     <website>https://www.kernel.org/</website>
@@ -322,6 +317,28 @@
   </package>
 
 
+  <package>
+    <name>xen</name>
+    <archive_location>https://downloads.xenproject.org/release/xen/4.14.0/xen-4.14.0.tar.gz</archive_location>
+    <build_commands>
+      <cmd>./configure {{option_prefix}} --disable-xen --disable-tools --disable-stubdom --disable-docs</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+  </package>
+  
+
+  
+  <package>
+    <name>qemu</name>
+    <website>https://www.qemu.org/</website>
+    <archive_location>https://download.qemu.org/qemu-5.1.0.tar.xz</archive_location>
+    <build_commands>
+      <cmd>./configure {{option_prefix}}</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+  </package>
 
 
 
@@ -466,6 +483,8 @@
 
   
 
+
+  
   <package>
     <name>lynx</name>
     <website>https://lynx.browser.org/</website>
