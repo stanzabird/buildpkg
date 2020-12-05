@@ -16,7 +16,7 @@
     <archive_location>ftp://xmlsoft.org/libxml2/libxml2-2.9.9.tar.gz</archive_location>
     <build_commands>
       <cmd>./configure {{option_prefix}} --without-python</cmd>
-      <cmd>make all</cmd>
+      <cmd>make</cmd>
       <cmd>make install</cmd>
     </build_commands>
   </package>
