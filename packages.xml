@@ -542,6 +542,19 @@
     <remarks></remarks>
   </package>
 
+
+
+  <package>
+    <name>nacl</name>
+    <website>https://nacl.cr.yp.to/</website>
+    <archive_location>https://hyperelliptic.org/nacl/nacl-20110221.tar.bz2</archive_location>
+    <build_commands>
+      <cmd>./do</cmd>
+    </build_commands>
+  </package>
+
+
+
   
   <!-- full prototype of possible data: empty <name> -->
   
