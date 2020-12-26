@@ -1,4 +1,18 @@
 <packages update_url="https://raw.githubusercontent.com/stanzabird/buildpkg/main/packages.xml">
+
+
+  <package>
+    <name>hdump</name>
+    <archive_location>https://github.com/stanzabird/hdump.git</archive_location>
+    <build_commands>
+      <cmd>autoreconf -if</cmd>
+      <cmd>./configure {{option_prefix}}</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+  </package>
+
+
   
   <package>
     <name>libtool</name>
@@ -50,7 +64,8 @@
   <package>
     <name>openssl</name>
     <website>https://www.openssl.org/</website>
-    <archive_location>https://github.com/openssl/openssl.git</archive_location>
+    <archive_location>https://www.openssl.org/source/openssl-1.1.1i.tar.gz</archive_location>
+    <git_location>https://github.com/openssl/openssl.git</git_location>
     <build_commands>
       <cmd>./config {{option_prefix}} --openssldir={{value_prefix}}/ssl</cmd>
       <cmd>make</cmd>
@@ -217,6 +232,11 @@
 &gt; extern char *UP, *BC, PC;
 </patch>
     </patches>
+    <build_commands>
+      <cmd>./configure {{option_prefix}} --with-gnutls=ifavailable</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
   </package>
 
 
@@ -267,12 +287,6 @@
     <archive_location>https://github.com/libffi/libffi/releases/download/v3.3/libffi-3.3.tar.gz</archive_location>
   </package>
 
-
-  <package>
-    <name>ncurses</name>
-    <website>https://invisible-island.net/ncurses/ncurses.html</website>
-    <archive_location>ftp://ftp.invisible-island.net/ncurses/ncurses.tar.gz</archive_location>
-  </package>
 
   <package>
     <name>nasm</name>
@@ -474,10 +488,6 @@
     <name>ncurses</name>
     <website>https://invisible-island.net/ncurses/</website>
     <archive_location>ftp://ftp.gnu.org/gnu/ncurses/ncurses-6.2.tar.gz</archive_location>
-    <!--build_commands><cmd>./configure {{option_prefix}}</cmd><cmd>make</cmd><cmd>make install</cmd></build_commands-->
-    <patches><patch></patch></patches>
-    <deps><dep></dep></deps>
-    <remarks></remarks>
   </package>
 
 
@@ -555,6 +565,49 @@
 
 
 
+  <package>
+    <name>libonion</name>
+    <website>https://www.coralbits.com/libonion/</website>
+    <archive_location>https://github.com/davidmoreno/onion.git</archive_location>
+    <git_location>https://github.com/davidmoreno/onion.git</git_location>
+    <build_commands>
+      
+      <cmd>mkdir build</cmd>
+      <cmd>cd build &amp;&amp; cmake -DCMAKE_INSTALL_PREFIX={{value_prefix}} -DCMAKE_CC_FLAGS=-I{{value_prefix}}/include ..</cmd>
+      <cmd>cd build &amp;&amp; make</cmd>
+      <cmd>cd build &amp;&amp; make install</cmd>
+
+    </build_commands>
+    <remarks>
+      Found this lib on a post in stackoverflow:
+      https://stackoverflow.com/questions/14851795/how-to-develop-http-server-with-libcurl
+      We don't want to write all the http server stuff ourselves.
+    </remarks>
+  </package>
+
+
+  
+  <package>
+    <name>mongoose</name>
+    <website>https://code.google.com/archive/p/mongoose/</website>
+    <archive_location>https://github.com/cesanta/mongoose.git</archive_location>
+    <git_location>https://github.com/cesanta/mongoose.git</git_location>
+    <build_commands>
+      
+      <cmd>make</cmd>
+      
+    </build_commands>
+    <patches><patch></patch></patches>
+    <deps><dep></dep></deps>
+    <remarks>
+
+	    this is the actual homepage, I think:
+
+	    https://github.com/cesanta/mongoose
+
+
+    </remarks>
+  </package>
   
   <!-- full prototype of possible data: empty <name> -->
   
@@ -562,6 +615,7 @@
     <name></name>
     <website></website>
     <archive_location></archive_location>
+    <git_location></git_location>
     <build_commands><cmd>./configure {{option_prefix}}</cmd><cmd>make</cmd><cmd>make install</cmd></build_commands>
     <patches><patch></patch></patches>
     <deps><dep></dep></deps>
