@@ -8,7 +8,7 @@
       <cmd>autoreconf -if</cmd>
       <cmd>./configure {{option_prefix}}</cmd>
       <cmd>make</cmd>
-      <cmd>make install</cmd>
+      <cmd>make install-strip</cmd>
     </build_commands>
   </package>
 
@@ -31,7 +31,7 @@
     <build_commands>
       <cmd>./configure {{option_prefix}} --without-python</cmd>
       <cmd>make</cmd>
-      <cmd>make install</cmd>
+      <cmd>make install-strip</cmd>
     </build_commands>
   </package>
   
