@@ -608,6 +608,24 @@
 
     </remarks>
   </package>
+
+
+
+  <package>
+    <name>nmap</name>
+    <website>https://nmap.org/</website>
+    <archive_location>https://nmap.org/dist/nmap-7.91.tar.bz2</archive_location>
+    <git_location>https://github.com/nmap/nmap.git</git_location>
+    <build_commands>
+      <cmd>./configure {{option_prefix}}</cmd>
+      <cmd>make</cmd>
+      <cmd>make install</cmd>
+    </build_commands>
+    <patches><patch></patch></patches>
+    <deps><dep></dep></deps>
+    <remarks></remarks>
+  </package>
+  
   
   <!-- full prototype of possible data: empty <name> -->
   
